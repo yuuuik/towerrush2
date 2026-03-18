@@ -834,6 +834,180 @@
   a.text-link { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
   a.text-link:hover { color: var(--blue-dark); }
 
+  /* ══════════════════════════════════════
+     TOWER RUSH — АНИМИРОВАННАЯ СЦЕНА
+  ══════════════════════════════════════ */
+  .tr-scene {
+    position: relative;
+    width: 100%; height: 340px;
+    overflow: hidden;
+  }
+  .tr-sky {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #4ab0e8 0%, #7dcff5 50%, #aee3fa 100%);
+  }
+  .tr-cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.85;
+  }
+  .tr-cloud::before, .tr-cloud::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+  }
+  .tr-cloud1 { width: 80px; height: 22px; top: 30px; left: -90px; animation: cloudMove 18s linear infinite; }
+  .tr-cloud1::before { width: 36px; height: 36px; top: -18px; left: 12px; }
+  .tr-cloud1::after  { width: 26px; height: 26px; top: -12px; left: 36px; }
+  .tr-cloud2 { width: 60px; height: 18px; top: 55px; left: 60%; animation: cloudMove 24s linear infinite 6s; }
+  .tr-cloud2::before { width: 28px; height: 28px; top: -14px; left: 8px; }
+  .tr-cloud2::after  { width: 20px; height: 20px; top: -10px; left: 28px; }
+  .tr-cloud3 { width: 50px; height: 15px; top: 20px; left: 40%; animation: cloudMove 30s linear infinite 12s; }
+  .tr-cloud3::before { width: 22px; height: 22px; top: -11px; left: 6px; }
+  .tr-cloud3::after  { width: 16px; height: 16px; top: -8px; left: 22px; }
+  @keyframes cloudMove {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(100vw + 120px)); }
+  }
+  .tr-crane-wrap {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+  }
+  .tr-crane-beam {
+    position: absolute;
+    top: 18px; left: 50%;
+    transform: translateX(-50%);
+    width: 160px; height: 12px;
+    background: linear-gradient(180deg, #f5c842 0%, #e0a800 100%);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 3;
+  }
+  .tr-crane-beam::before {
+    content: '';
+    position: absolute;
+    top: -10px; right: 0;
+    width: 12px; height: 22px;
+    background: #e0a800;
+    border-radius: 3px;
+  }
+  .tr-crane-vertical {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 10px; height: 22px;
+    background: linear-gradient(180deg, #f5c842, #c8900a);
+    border-radius: 3px;
+    z-index: 3;
+  }
+  .tr-rope-wrap {
+    position: absolute;
+    top: 24px;
+    left: calc(50% - 64px);
+    transform-origin: top center;
+    animation: craneSway 3s ease-in-out infinite;
+    z-index: 4;
+  }
+  @keyframes craneSway {
+    0%,100% { transform: rotate(-14deg); }
+    50%      { transform: rotate(14deg);  }
+  }
+  .tr-rope {
+    width: 2px; height: 70px;
+    background: rgba(0,0,0,0.35);
+    margin: 0 auto;
+  }
+  .tr-hanging-block {
+    width: 54px; height: 46px;
+    position: relative;
+    margin: 0 auto;
+  }
+  .tr-block-face { position: absolute; border-radius: 5px; }
+  .tr-bf-front {
+    width: 54px; height: 46px;
+    background: linear-gradient(135deg, #e8882a 0%, #c8620a 100%);
+    border: 2px solid rgba(0,0,0,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: inset 0 2px 6px rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.25);
+    top: 0; left: 0;
+  }
+  .tr-bf-top {
+    width: 54px; height: 10px;
+    background: linear-gradient(180deg, #f0a040 0%, #e08820 100%);
+    top: -8px; left: 0;
+    transform: skewX(40deg);
+    border-radius: 3px 3px 0 0;
+  }
+  .tr-bf-side {
+    width: 10px; height: 46px;
+    background: linear-gradient(180deg, #b05010 0%, #903010 100%);
+    top: 0; left: 54px;
+    transform: skewY(-40deg) translateY(-4px);
+    border-radius: 0 3px 3px 0;
+  }
+  .tr-mult-badge {
+    position: absolute;
+    top: 26px; left: calc(50% - 24px);
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.65);
+    color: #f5c842;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 8px;
+    z-index: 6;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: badgePop 3s ease-in-out infinite;
+  }
+  @keyframes badgePop {
+    0%,100% { transform: translateX(-50%) scale(1); }
+    50%      { transform: translateX(-50%) scale(1.1); }
+  }
+  .tr-tower {
+    position: absolute;
+    bottom: 38px;
+    left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column-reverse;
+    align-items: center;
+    gap: 2px;
+    z-index: 2;
+  }
+  .tr-tblock {
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 5px;
+    font-weight: 700; font-size: 0.72rem;
+    color: rgba(255,255,255,0.9);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    border-top: 3px solid rgba(255,255,255,0.3);
+  }
+  .tr-tb4 { width: 180px; height: 34px; background: linear-gradient(135deg,#e8a030,#c87010); animation: blockIn 0.5s ease both 0.1s; }
+  .tr-tb3 { width: 158px; height: 34px; background: linear-gradient(135deg,#d4a020,#b07800); animation: blockIn 0.5s ease both 0.3s; }
+  .tr-tb2 { width: 132px; height: 34px; background: linear-gradient(135deg,#c09010,#907000); animation: blockIn 0.5s ease both 0.5s; }
+  .tr-tb1 { width: 106px; height: 34px; background: linear-gradient(135deg,#a07800,#705800); animation: blockIn 0.5s ease both 0.7s; }
+  @keyframes blockIn {
+    from { transform: scaleX(0); opacity: 0; }
+    to   { transform: scaleX(1); opacity: 1; }
+  }
+  .tr-ground {
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 38px;
+    background: linear-gradient(180deg, #8b7355 0%, #6b5335 100%);
+    border-top: 3px solid #a08050;
+    z-index: 1;
+  }
+  .tr-ground::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 8px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 20px, transparent 20px, transparent 40px);
+  }
+
   /* ── GAME PREVIEW ── */
   .game-preview-wrap {
     width: min(760px, 95vw);
@@ -1253,12 +1427,55 @@
       <span style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-left:0.5rem;">Tower Rush — Live</span>
       <span style="margin-left:auto;font-size:0.72rem;color:#4ade80;font-weight:600;">● LIVE</span>
     </div>
-    <div class="game-preview-img-wrap">
-      <img src="image.jpg" alt="Tower Rush — краш-игра Galaxsys, логотип и скриншот реальной игры" class="game-preview-img" loading="eager" width="760" height="430">
-      <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="game-preview-play" target="_blank" rel="noopener noreferrer" aria-label="Играть в Tower Rush">
-        <span class="game-preview-play-icon">▶</span>
-        <span>Играть сейчас</span>
-      </a>
+    <div class="game-preview-img-wrap" style="position:relative;line-height:0;background:#5bbfed;min-height:340px;overflow:hidden;">
+
+      <!-- ── TOWER RUSH АНИМАЦИЯ ── -->
+      <div class="tr-scene" aria-label="Анимация краш-игры Tower Rush — кран опускает блок на башню">
+
+        <!-- Небо / градиент -->
+        <div class="tr-sky"></div>
+
+        <!-- Облака -->
+        <div class="tr-cloud tr-cloud1"></div>
+        <div class="tr-cloud tr-cloud2"></div>
+        <div class="tr-cloud tr-cloud3"></div>
+
+        <!-- Кран -->
+        <div class="tr-crane-wrap">
+          <div class="tr-crane-beam"></div>
+          <div class="tr-crane-vertical"></div>
+          <!-- Верёвка + качающийся блок -->
+          <div class="tr-rope-wrap">
+            <div class="tr-rope"></div>
+            <div class="tr-hanging-block">
+              <div class="tr-block-face tr-bf-top"></div>
+              <div class="tr-block-face tr-bf-front">🏠</div>
+              <div class="tr-block-face tr-bf-side"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Множитель над блоком -->
+        <div class="tr-mult-badge">×<span class="tr-mult-count">1.00</span></div>
+
+        <!-- Башня (растущие блоки) -->
+        <div class="tr-tower">
+          <div class="tr-tblock tr-tb1"><span>×4.5</span></div>
+          <div class="tr-tblock tr-tb2"><span>×2.8</span></div>
+          <div class="tr-tblock tr-tb3"><span>×1.8</span></div>
+          <div class="tr-tblock tr-tb4"><span>×1.2</span></div>
+        </div>
+
+        <!-- Земля -->
+        <div class="tr-ground"></div>
+
+        <!-- Кнопка играть поверх -->
+        <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="game-preview-play" target="_blank" rel="noopener noreferrer" aria-label="Играть в Tower Rush">
+          <span class="game-preview-play-icon">▶</span>
+          <span>Играть сейчас</span>
+        </a>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1887,6 +2104,21 @@ const countObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.count-num[data-target]').forEach(el => countObserver.observe(el));
+
+// Анимация множителя в hero-сцене
+(function() {
+  const el = document.querySelector('.tr-mult-count');
+  if (!el) return;
+  let val = 1.00, dir = 1, speed = 0.018;
+  function tick() {
+    val += speed * dir;
+    if (val >= 12.5) { val = 12.5; dir = -1; speed = 0.04; }
+    if (val <= 1.00) { val = 1.00; dir = 1;  speed = 0.018; }
+    el.textContent = val.toFixed(2);
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
 
 // Smooth nav shadow on scroll
 const nav = document.querySelector('nav');
