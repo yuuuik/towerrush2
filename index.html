@@ -1427,55 +1427,19 @@
       <span style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-left:0.5rem;">Tower Rush — Live</span>
       <span style="margin-left:auto;font-size:0.72rem;color:#4ade80;font-weight:600;">● LIVE</span>
     </div>
-    <div class="game-preview-img-wrap" style="position:relative;line-height:0;background:#5bbfed;min-height:340px;overflow:hidden;">
-
-      <!-- ── TOWER RUSH АНИМАЦИЯ ── -->
-      <div class="tr-scene" aria-label="Анимация краш-игры Tower Rush — кран опускает блок на башню">
-
-        <!-- Небо / градиент -->
-        <div class="tr-sky"></div>
-
-        <!-- Облака -->
-        <div class="tr-cloud tr-cloud1"></div>
-        <div class="tr-cloud tr-cloud2"></div>
-        <div class="tr-cloud tr-cloud3"></div>
-
-        <!-- Кран -->
-        <div class="tr-crane-wrap">
-          <div class="tr-crane-beam"></div>
-          <div class="tr-crane-vertical"></div>
-          <!-- Верёвка + качающийся блок -->
-          <div class="tr-rope-wrap">
-            <div class="tr-rope"></div>
-            <div class="tr-hanging-block">
-              <div class="tr-block-face tr-bf-top"></div>
-              <div class="tr-block-face tr-bf-front">🏠</div>
-              <div class="tr-block-face tr-bf-side"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Множитель над блоком -->
-        <div class="tr-mult-badge">×<span class="tr-mult-count">1.00</span></div>
-
-        <!-- Башня (растущие блоки) -->
-        <div class="tr-tower">
-          <div class="tr-tblock tr-tb1"><span>×4.5</span></div>
-          <div class="tr-tblock tr-tb2"><span>×2.8</span></div>
-          <div class="tr-tblock tr-tb3"><span>×1.8</span></div>
-          <div class="tr-tblock tr-tb4"><span>×1.2</span></div>
-        </div>
-
-        <!-- Земля -->
-        <div class="tr-ground"></div>
-
-        <!-- Кнопка играть поверх -->
-        <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="game-preview-play" target="_blank" rel="noopener noreferrer" aria-label="Играть в Tower Rush">
-          <span class="game-preview-play-icon">▶</span>
-          <span>Играть сейчас</span>
-        </a>
-      </div>
-
+    <div class="game-preview-img-wrap">
+      <img
+        src="tower-rush-ingame.gif"
+        alt="Tower Rush — геймплей краш-игры Galaxsys в реальном времени: кран строит башню, множитель растёт"
+        class="game-preview-img"
+        loading="eager"
+        width="760"
+        height="430"
+      >
+      <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="game-preview-play" target="_blank" rel="noopener noreferrer" aria-label="Играть в Tower Rush">
+        <span class="game-preview-play-icon">▶</span>
+        <span>Играть сейчас</span>
+      </a>
     </div>
   </div>
 </div>
@@ -2104,21 +2068,6 @@ const countObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.count-num[data-target]').forEach(el => countObserver.observe(el));
-
-// Анимация множителя в hero-сцене
-(function() {
-  const el = document.querySelector('.tr-mult-count');
-  if (!el) return;
-  let val = 1.00, dir = 1, speed = 0.018;
-  function tick() {
-    val += speed * dir;
-    if (val >= 12.5) { val = 12.5; dir = -1; speed = 0.04; }
-    if (val <= 1.00) { val = 1.00; dir = 1;  speed = 0.018; }
-    el.textContent = val.toFixed(2);
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
 
 // Smooth nav shadow on scroll
 const nav = document.querySelector('nav');
