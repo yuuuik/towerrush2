@@ -1008,6 +1008,38 @@
     background: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 20px, transparent 20px, transparent 40px);
   }
 
+  /* ══ GAME PREVIEW FRAME ══ */
+  .game-preview-wrap {
+    width: min(720px, 96vw);
+    margin: 0 auto 1.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.85rem;
+  }
+  .game-preview-frame {
+    width: 100%;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 20px 56px rgba(0,0,0,0.18), 0 4px 16px rgba(212,175,55,0.18);
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+  .game-preview-bar {
+    background: #1a1a2e;
+    padding: 0.5rem 0.9rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .game-preview-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+  .game-preview-img { width: 100%; height: auto; display: block; }
+  .gp-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    color: #fff; font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem; font-weight: 800;
+    padding: 0.7rem 2rem; border-radius: 50px;
+    text-decoration: none; letter-spacing: 0.03em;
+    box-shadow: 0 6px 24px rgba(212,175,55,0.38);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .gp-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(212,175,55,0.52); }
+  @keyframes livePulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
   /* ══ КАЛЬКУЛЯТОР СТРАТЕГИЙ ══ */
   .calc-wrap {
     max-width: 820px; margin: 0 auto;
@@ -1366,30 +1398,29 @@
     </div>
 
     <div class="game-preview-wrap fade-up fade-up-d1">
-  <div class="game-preview-frame">
-    <div class="game-preview-bar">
-      <span class="game-preview-dot" style="background:#ff5f57"></span>
-      <span class="game-preview-dot" style="background:#febc2e"></span>
-      <span class="game-preview-dot" style="background:#28c840"></span>
-      <span style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-left:0.5rem;">Tower Rush — Live</span>
-      <span style="margin-left:auto;font-size:0.72rem;color:#4ade80;font-weight:600;">● LIVE</span>
-    </div>
-    <div class="game-preview-img-wrap">
-      <img
-        src="tower-rush-ingame.gif"
-        alt="Tower Rush — геймплей краш-игры Galaxsys в реальном времени: кран строит башню, множитель растёт"
-        class="game-preview-img"
-        loading="eager"
-        width="760"
-        height="430"
-      >
-      <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="game-preview-play" target="_blank" rel="noopener noreferrer" aria-label="Играть в Tower Rush">
-        <span class="game-preview-play-icon">▶</span>
-        <span>Играть сейчас</span>
+      <div class="game-preview-frame">
+        <div class="game-preview-bar">
+          <span class="game-preview-dot" style="background:#ff5f57"></span>
+          <span class="game-preview-dot" style="background:#febc2e"></span>
+          <span class="game-preview-dot" style="background:#28c840"></span>
+          <span style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-left:0.7rem;flex:1;">towerrush — игра онлайн</span>
+          <span style="font-size:0.7rem;color:#4ade80;font-weight:700;display:flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;background:#4ade80;border-radius:50%;display:inline-block;animation:livePulse 1.4s ease-in-out infinite;"></span>LIVE</span>
+        </div>
+        <div style="position:relative;line-height:0;overflow:hidden;">
+          <img
+            src="tower-rush-ingame.gif"
+            alt="Tower Rush — геймплей краш-игры: кран строит башню, иксы растут до ×100"
+            class="game-preview-img"
+            loading="eager"
+            width="760"
+            height="430"
+          >
+        </div>
+      </div>
+      <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="gp-cta" target="_blank" rel="noopener noreferrer">
+        ▶&nbsp; Играть в Tower Rush сейчас
       </a>
     </div>
-  </div>
-</div>
 
     <h1 class="fade-up fade-up-d2">
       Tower Rush — краш-игра онлайн:<br><em>расти до ×100, успей забрать до краша</em>
