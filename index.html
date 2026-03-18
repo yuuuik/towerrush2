@@ -1629,14 +1629,14 @@
             <div class="calc-metric">
               <span class="cm-icon">💰</span>
               <span class="cm-val" id="cm-balance-end">8 700 ₽</span>
-              <span class="cm-label">Ожид. баланс в конце</span>
+              <span class="cm-label">Баланс при везении</span>
             </div>
           </div>
 
           <div class="calc-bankroll-bar-wrap">
             <div class="calc-bankroll-bar-labels">
               <span id="cbb-start">10 000 ₽</span>
-              <span style="font-size:0.72rem;">ожид. изменение: <b id="cbb-ev-val" style="color:#dc2626">−1 300 ₽</b></span>
+              <span style="font-size:0.72rem;">при везении: <b id="cbb-ev-val" style="color:#16a34a">+2 500 ₽</b></span>
               <span id="cbb-end">8 700 ₽</span>
             </div>
             <div class="calc-bankroll-bar"><div class="cbb-fill" id="cbb-fill" style="width:87%"></div></div>
@@ -2167,9 +2167,14 @@ function calcUpdate() {
 
   var pWin   = Math.min(0.974 / mult, 0.9999);
   var pLose  = 1 - pWin;
-  var expWins   = rounds * pWin;
-  var evTotal   = rounds * bet * (0.974 - 1);           // −2.6% × ставка × раундов
-  var balEnd    = bankroll + evTotal;
+  var expWins = rounds * pWin;
+
+  // Сценарий «при везении»: среднее + 1σ (стандартное отклонение)
+  var sigma     = Math.sqrt(rounds * pWin * pLose);
+  var luckyWins = Math.min(rounds, expWins + sigma);
+  var luckyLoss = rounds - luckyWins;
+  var luckyProfit = luckyWins * bet * (mult - 1) - luckyLoss * bet;
+  var luckyBalance = bankroll + luckyProfit;
 
   // Метрики
   document.getElementById('cm-winrate').textContent    = (pWin * 100).toFixed(1) + '%';
@@ -2178,19 +2183,19 @@ function calcUpdate() {
   document.getElementById('cm-rounds-lbl').textContent  = rounds;
 
   var balEl = document.getElementById('cm-balance-end');
-  balEl.textContent = calcFmt(Math.max(0, balEnd)) + ' ₽';
-  balEl.className = 'cm-val ' + (balEnd >= bankroll ? 'green' : 'red');
+  balEl.textContent = calcFmt(Math.max(0, luckyBalance)) + ' ₽';
+  balEl.className = 'cm-val ' + (luckyBalance >= bankroll ? 'green' : 'red');
 
   // Полоса банкролла
   document.getElementById('cbb-start').textContent = calcFmt(bankroll) + ' ₽';
-  document.getElementById('cbb-end').textContent   = calcFmt(Math.max(0, balEnd)) + ' ₽';
+  document.getElementById('cbb-end').textContent   = calcFmt(Math.max(0, luckyBalance)) + ' ₽';
   var evEl = document.getElementById('cbb-ev-val');
-  evEl.textContent = (evTotal < 0 ? '−' : '+') + calcFmt(Math.abs(evTotal)) + ' ₽';
-  evEl.style.color = evTotal < 0 ? '#dc2626' : '#16a34a';
-  var fillPct = Math.max(2, Math.min(100, (balEnd / bankroll) * 100));
+  evEl.textContent = (luckyProfit >= 0 ? '+' : '−') + calcFmt(Math.abs(luckyProfit)) + ' ₽';
+  evEl.style.color = luckyProfit >= 0 ? '#16a34a' : '#dc2626';
+  var fillPct = Math.max(2, Math.min(150, (luckyBalance / bankroll) * 100));
   var fill = document.getElementById('cbb-fill');
-  fill.style.width      = fillPct + '%';
-  fill.style.background = fillPct >= 98 ? '#16a34a' : fillPct >= 80 ? '#d4af37' : '#dc2626';
+  fill.style.width      = Math.min(100, fillPct) + '%';
+  fill.style.background = fillPct >= 110 ? '#16a34a' : fillPct >= 100 ? '#d4af37' : '#dc2626';
 
   // Серийный риск
   var s3 = Math.pow(pLose, 3) * 100;
