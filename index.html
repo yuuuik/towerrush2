@@ -229,7 +229,76 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--gold-dark); }
-  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ── BURGER ── */
+  .burger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 40px; height: 40px;
+    background: none; border: none; cursor: pointer;
+    padding: 4px; border-radius: 8px;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  .burger:hover { background: rgba(212,175,55,0.1); }
+  .burger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+    transform-origin: center;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Мобильное меню-дропдаун */
+  .nav-mobile {
+    position: fixed; top: 64px; left: 0; right: 0;
+    background: rgba(253,250,245,0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(212,175,55,0.22);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    z-index: 99;
+    display: none; flex-direction: column;
+    padding: 0.5rem 1rem 1rem;
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .nav-mobile.open {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .nav-mobile a {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 0.5rem;
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+    font-size: 1rem; font-weight: 600;
+    color: var(--text); text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+    border-radius: 8px;
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: var(--gold-dark); background: rgba(212,175,55,0.05); }
+  .nav-mobile a .nm-icon { font-size: 1rem; width: 24px; text-align: center; }
+  .nav-mobile .nm-cta {
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    color: white !important; border-radius: 50px !important;
+    justify-content: center; font-weight: 700 !important;
+    padding: 0.85rem 1rem !important;
+    box-shadow: 0 4px 14px var(--shadow-gold);
+  }
+  .nav-mobile .nm-cta:hover { opacity: 0.92; background: linear-gradient(135deg, var(--gold-dark), var(--gold-light)) !important; }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .burger { display: flex; }
+    .nav-inner .btn-primary { display: none; }
+  }
 
   /* ── HERO ── */
   .hero {
@@ -1473,8 +1542,22 @@
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="btn-primary" style="padding:0.65rem 1.4rem;font-size:0.85rem;">Начать игру</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Мобильное меню -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Навигация">
+  <a href="#about"   onclick="closeMobileNav()"><span class="nm-icon">🏛️</span>Об игре</a>
+  <a href="#how"     onclick="closeMobileNav()"><span class="nm-icon">📖</span>Как играть</a>
+  <a href="#demo"    onclick="closeMobileNav()"><span class="nm-icon">📊</span>Калькулятор</a>
+  <a href="#tips"    onclick="closeMobileNav()"><span class="nm-icon">💡</span>Стратегии</a>
+  <a href="#bonuses" onclick="closeMobileNav()"><span class="nm-icon">🎁</span>Бонусы</a>
+  <a href="#faq"     onclick="closeMobileNav()"><span class="nm-icon">❓</span>FAQ</a>
+  <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="nm-cta" target="_blank" rel="noopener">🚀 Начать игру</a>
+</div>
 
 <main id="main-content">
 <!-- ═══ HERO ═══ -->
@@ -2364,6 +2447,46 @@ function calcUpdate() {
 }
 
 document.addEventListener('DOMContentLoaded', calcUpdate);
+
+// ── Burger menu ──
+var burger = document.getElementById('burger');
+var navMobile = document.getElementById('nav-mobile');
+
+function openMobileNav() {
+  navMobile.style.display = 'flex';
+  requestAnimationFrame(function() {
+    navMobile.classList.add('open');
+  });
+  burger.classList.add('open');
+  burger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileNav() {
+  navMobile.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  setTimeout(function() {
+    if (!navMobile.classList.contains('open')) navMobile.style.display = 'none';
+  }, 260);
+}
+
+burger.addEventListener('click', function() {
+  navMobile.classList.contains('open') ? closeMobileNav() : openMobileNav();
+});
+
+// Закрыть при клике вне меню
+document.addEventListener('click', function(e) {
+  if (navMobile.classList.contains('open') && !navMobile.contains(e.target) && !burger.contains(e.target)) {
+    closeMobileNav();
+  }
+});
+
+// Закрыть при resize → десктоп
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 720) closeMobileNav();
+});
 
 // Smooth nav shadow on scroll
 const nav = document.querySelector('nav');
