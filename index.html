@@ -1254,10 +1254,11 @@
     .step-card { padding: 1.25rem 1rem; }
 
     /* ── Tips / mult-table (горизонтальный скролл) ── */
-    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .mult-table { min-width: 400px; }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; }
+    .mult-table { min-width: 480px; }
     .mult-table thead th,
-    .mult-table tbody td { padding: 0.65rem 0.7rem; font-size: 0.8rem; }
+    .mult-table tbody td { padding: 0.6rem 0.65rem; font-size: 0.78rem; white-space: nowrap; }
+    .risk-badge { font-size: 0.7rem; padding: 0.15rem 0.5rem; white-space: nowrap; }
 
     /* ── Bonuses ── */
     .bonus-card { padding: 1.25rem; }
@@ -2131,9 +2132,10 @@
       <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem;">🚀 Начать игру</a>
       <a href="#bonuses" class="btn-blue">🎁 Получить бонус</a>
     </div>
-    <p style="margin-top:1.5rem;font-size:0.78rem;color:var(--text-light);" class="fade-up">
-      Игра доступна для лиц 18+. Играйте ответственно. <a href="#bonuses" class="text-link">Условия бонусов</a>
-    </p>
+    <div style="margin-top:1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem;" class="fade-up">
+      <p style="font-size:0.78rem;color:var(--text-light);margin:0;">Игра доступна для лиц 18+. Играйте ответственно.</p>
+      <a href="#bonuses" class="btn-outline" style="padding:0.55rem 1.6rem;font-size:0.85rem;">📋 Условия бонусов</a>
+    </div>
   </div>
 </section>
 
