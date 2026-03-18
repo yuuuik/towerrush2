@@ -232,7 +232,7 @@
 
   /* ── BURGER ── */
   .burger {
-    display: none;
+    display: flex;
     flex-direction: column; justify-content: center; align-items: center;
     gap: 5px; width: 40px; height: 40px;
     background: none; border: none; cursor: pointer;
@@ -294,10 +294,13 @@
   }
   .nav-mobile .nm-cta:hover { opacity: 0.92; background: linear-gradient(135deg, var(--gold-dark), var(--gold-light)) !important; }
 
+  @media (min-width: 721px) {
+    .burger { display: none; }
+    .nav-mobile { display: none !important; }
+  }
   @media (max-width: 720px) {
     .nav-links { display: none; }
-    .burger { display: flex; }
-    .nav-inner .btn-primary { display: none; }
+    .nav-inner > .btn-primary { display: none; }
   }
 
   /* ── HERO ── */
