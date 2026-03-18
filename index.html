@@ -15,7 +15,10 @@
 <meta property="og:url" content="https://towerrush2.vercel.app/">
 <meta property="og:title" content="Tower Rush — краш-игра онлайн с множителями до ×100">
 <meta property="og:description" content="Стройте башню, испытайте удачу и выводите выигрыш мгновенно. RTP 97.4%, Provably Fair, бонус 200% на первый депозит. Демо-режим — бесплатно!">
-<meta property="og:image" content="https://towerrush2.vercel.app/favicon.png">
+<meta property="og:image" content="https://towerrush2.vercel.app/game.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tower Rush — краш-игра онлайн, скриншот реальной игры">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Tower Rush">
 
@@ -24,7 +27,7 @@
 <meta name="twitter:url" content="https://towerrush2.vercel.app/">
 <meta name="twitter:title" content="Tower Rush — краш-игра онлайн с множителями до ×100">
 <meta name="twitter:description" content="Стройте башню, испытайте удачу и выводите выигрыш мгновенно. RTP 97.4%, Provably Fair, бонус 200% на первый депозит.">
-<meta name="twitter:image" content="https://towerrush2.vercel.app/favicon.png">
+<meta name="twitter:image" content="https://towerrush2.vercel.app/game.jpg">
   <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -830,6 +833,150 @@
   /* ── LINK COLOR ── */
   a.text-link { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
   a.text-link:hover { color: var(--blue-dark); }
+
+  /* ── GAME PREVIEW ── */
+  .game-preview-wrap {
+    width: min(760px, 95vw);
+    margin: 0 auto 2rem;
+  }
+  .game-preview-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.22), 0 4px 16px rgba(212,175,55,0.2);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .game-preview-bar {
+    background: #1a1a2e;
+    padding: 0.55rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .game-preview-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .game-preview-img-wrap {
+    position: relative;
+    line-height: 0;
+  }
+  .game-preview-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  .game-preview-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: rgba(0,0,0,0.45);
+    color: white;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+    opacity: 0;
+  }
+  .game-preview-wrap:hover .game-preview-play {
+    opacity: 1;
+  }
+  .game-preview-play-icon {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 8px 32px rgba(212,175,55,0.5);
+    padding-left: 4px;
+  }
+
+  /* ── DEMO FRAME ── */
+  .demo-frame-outer {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18), 0 4px 20px rgba(212,175,55,0.15);
+    border: 1.5px solid rgba(212,175,55,0.25);
+    background: #0d0d1a;
+    margin-bottom: 2rem;
+  }
+  .demo-frame-bar {
+    background: #1a1a2e;
+    padding: 0.6rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .demo-frame-bar span.live-badge {
+    background: #16a34a;
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    margin-left: auto;
+  }
+  .demo-frame-content {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .demo-frame-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 500px;
+    object-fit: cover;
+  }
+  .demo-frame-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13,13,26,0.1) 0%, rgba(13,13,26,0.7) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem;
+    gap: 1rem;
+  }
+  .demo-play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(212,175,55,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .demo-play-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(212,175,55,0.55);
+  }
+  .demo-note {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+  }
 </style>
 
 <!-- JSON-LD Structured Data -->
@@ -1015,84 +1162,24 @@
     
     </div>
 
-    <!-- Tower SVG illustration -->
-    <div class="tower-wrap fade-up fade-up-d1">
-      <div class="tower-svg-wrap">
-        <svg viewBox="0 0 240 340" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" role="img" aria-label="Иллюстрация башни из золотых блоков — краш-игра Tower Rush"><title>Башня Tower Rush — краш-игра онлайн</title>
-          <defs>
-            <linearGradient id="gBlock" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#e8c84a"/>
-              <stop offset="50%" stop-color="#d4af37"/>
-              <stop offset="100%" stop-color="#b8860b"/>
-            </linearGradient>
-            <linearGradient id="gBlockShad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#b8860b"/>
-              <stop offset="100%" stop-color="#8b6508"/>
-            </linearGradient>
-            <linearGradient id="gBlockTop" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#f0d060"/>
-              <stop offset="100%" stop-color="#d4af37"/>
-            </linearGradient>
-            <linearGradient id="gGlow" x1="0.5" y1="0" x2="0.5" y2="1">
-              <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.8"/>
-              <stop offset="100%" stop-color="#fef3c7" stop-opacity="0"/>
-            </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="8" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <!-- Glow base -->
-          <ellipse cx="120" cy="320" rx="80" ry="16" fill="rgba(212,175,55,0.18)"/>
-          <!-- Floor 1 - widest -->
-          <g filter="url(#glow)">
-            <rect x="20" y="280" width="200" height="38" rx="6" fill="url(#gBlock)"/>
-            <rect x="20" y="310" width="200" height="8" rx="3" fill="url(#gBlockShad)" opacity="0.5"/>
-            <rect x="20" y="280" width="200" height="12" rx="3" fill="url(#gBlockTop)" opacity="0.6"/>
-            <text x="120" y="305" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Manrope,sans-serif" font-weight="700" font-size="13">×1.2</text>
-          </g>
-          <!-- Floor 2 -->
-          <g>
-            <rect x="34" y="238" width="172" height="38" rx="6" fill="url(#gBlock)"/>
-            <rect x="34" y="268" width="172" height="8" rx="3" fill="url(#gBlockShad)" opacity="0.5"/>
-            <rect x="34" y="238" width="172" height="12" rx="3" fill="url(#gBlockTop)" opacity="0.6"/>
-            <text x="120" y="263" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Manrope,sans-serif" font-weight="700" font-size="13">×1.8</text>
-          </g>
-          <!-- Floor 3 -->
-          <g>
-            <rect x="50" y="196" width="140" height="38" rx="6" fill="url(#gBlock)"/>
-            <rect x="50" y="226" width="140" height="8" rx="3" fill="url(#gBlockShad)" opacity="0.5"/>
-            <rect x="50" y="196" width="140" height="12" rx="3" fill="url(#gBlockTop)" opacity="0.6"/>
-            <text x="120" y="221" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Manrope,sans-serif" font-weight="700" font-size="13">×2.8</text>
-          </g>
-          <!-- Floor 4 -->
-          <g>
-            <rect x="64" y="154" width="112" height="38" rx="6" fill="url(#gBlock)"/>
-            <rect x="64" y="184" width="112" height="8" rx="3" fill="url(#gBlockShad)" opacity="0.5"/>
-            <rect x="64" y="154" width="112" height="12" rx="3" fill="url(#gBlockTop)" opacity="0.6"/>
-            <text x="120" y="179" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Manrope,sans-serif" font-weight="700" font-size="13">×4.5</text>
-          </g>
-          <!-- Floor 5 -->
-          <g>
-            <rect x="78" y="112" width="84" height="38" rx="6" fill="url(#gBlock)"/>
-            <rect x="78" y="142" width="84" height="8" rx="3" fill="url(#gBlockShad)" opacity="0.5"/>
-            <rect x="78" y="112" width="84" height="12" rx="3" fill="url(#gBlockTop)" opacity="0.6"/>
-            <text x="120" y="137" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Manrope,sans-serif" font-weight="700" font-size="11">×8.0</text>
-          </g>
-          <!-- Floor 6 - top -->
-          <g>
-            <rect x="92" y="70" width="56" height="38" rx="6" fill="url(#gBlock)"/>
-            <rect x="92" y="100" width="56" height="8" rx="3" fill="url(#gBlockShad)" opacity="0.5"/>
-            <rect x="92" y="70" width="56" height="12" rx="3" fill="url(#gBlockTop)" opacity="0.6"/>
-            <text x="120" y="95" text-anchor="middle" fill="rgba(255,255,255,0.95)" font-family="Manrope,sans-serif" font-weight="700" font-size="9">×20</text>
-          </g>
-          <!-- Crown / star -->
-          <circle cx="120" cy="52" r="22" fill="rgba(255,220,60,0.18)"/>
-          <circle cx="120" cy="52" r="14" fill="url(#gBlock)" filter="url(#glow)"/>
-          <text x="120" y="58" text-anchor="middle" font-size="16">⭐</text>
-        </svg>
-      </div>
+    <div class="game-preview-wrap fade-up fade-up-d1">
+  <div class="game-preview-frame">
+    <div class="game-preview-bar">
+      <span class="game-preview-dot" style="background:#ff5f57"></span>
+      <span class="game-preview-dot" style="background:#febc2e"></span>
+      <span class="game-preview-dot" style="background:#28c840"></span>
+      <span style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-left:0.5rem;">Tower Rush — Live</span>
+      <span style="margin-left:auto;font-size:0.72rem;color:#4ade80;font-weight:600;">● LIVE</span>
     </div>
+    <div class="game-preview-img-wrap">
+      <img src="game.jpg" alt="Скриншот краш-игры Tower Rush — реальный геймплей с множителями" class="game-preview-img" loading="eager" width="760" height="430">
+      <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="game-preview-play" target="_blank" rel="noopener noreferrer" aria-label="Играть в Tower Rush">
+        <span class="game-preview-play-icon">▶</span>
+        <span>Играть сейчас</span>
+      </a>
+    </div>
+  </div>
+</div>
 
     <h1 class="fade-up fade-up-d2">
       Tower Rush — краш-игра онлайн:<br><em>каждый этаж ближе к джекпоту</em>
@@ -1235,30 +1322,62 @@
 <section class="demo-section" id="demo" style="background:var(--cream-dark);padding:3.5rem 1.5rem;">
   <div class="section-inner">
     <div class="section-head fade-up" style="margin-bottom:2rem;">
-      <span class="section-label">Бесплатно</span>
+      <span class="section-label">Демо-режим</span>
       <span class="gold-line"></span>
-      <h2 style="font-size:clamp(1.5rem,3vw,2rem);">Играть в Tower Rush бесплатно — демо-режим без регистрации</h2>
-      <p>Попробуй краш-игру Tower Rush в демо-режиме: без депозита, без риска. Идеально для новичков, чтобы освоить механику и выработать стратегию перед игрой на реальные деньги.</p>
+      <h2 style="font-size:clamp(1.5rem,3.5vw,2.2rem);">Играть в Tower Rush бесплатно — демо без регистрации и депозита</h2>
+      <p>Краш-игра Tower Rush в полноценном демо-режиме: те же множители до ×100, Provably Fair алгоритм, авто-вывод и история раундов — без риска для реальных денег.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;" class="fade-up">
-      <div style="background:var(--white);border-radius:16px;padding:1.75rem;box-shadow:0 4px 20px var(--shadow-soft);">
-        <div style="font-size:2rem;margin-bottom:0.75rem;">🆓</div>
-        <h3 style="font-size:1.05rem;margin-bottom:0.5rem;">Без депозита</h3>
-        <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;">Демо-режим доступен сразу — без регистрации и пополнения счёта. Виртуальный баланс для практики.</p>
+
+    <!-- Game Demo Frame -->
+    <div class="demo-frame-outer fade-up">
+      <div class="demo-frame-bar">
+        <span class="game-preview-dot" style="background:#ff5f57"></span>
+        <span class="game-preview-dot" style="background:#febc2e"></span>
+        <span class="game-preview-dot" style="background:#28c840"></span>
+        <span style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-left:0.75rem;font-family:'Manrope',sans-serif;">🏆 Tower Rush — Демо-режим</span>
+        <span class="live-badge">DEMO</span>
       </div>
-      <div style="background:var(--white);border-radius:16px;padding:1.75rem;box-shadow:0 4px 20px var(--shadow-soft);">
-        <div style="font-size:2rem;margin-bottom:0.75rem;">📱</div>
-        <h3 style="font-size:1.05rem;margin-bottom:0.5rem;">На любом устройстве</h3>
-        <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;">Краш-игра запускается в браузере на телефоне (iOS, Android) и на компьютере — без скачивания.</p>
-      </div>
-      <div style="background:var(--white);border-radius:16px;padding:1.75rem;box-shadow:0 4px 20px var(--shadow-soft);">
-        <div style="font-size:2rem;margin-bottom:0.75rem;">🎓</div>
-        <h3 style="font-size:1.05rem;margin-bottom:0.5rem;">Полная механика</h3>
-        <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;">Демо полностью воспроизводит реальную игру: те же множители, авто-вывод, история раундов и статистика.</p>
+      <div class="demo-frame-content">
+        <img src="game.jpg" alt="Краш-игра Tower Rush — реальный скриншот геймплея: башня растёт, множитель увеличивается" class="demo-frame-img" loading="lazy" width="1060" height="530">
+        <div class="demo-frame-overlay">
+          <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="demo-play-btn" target="_blank" rel="noopener noreferrer">
+            ▶&nbsp; Играть в Tower Rush бесплатно
+          </a>
+          <p class="demo-note">Демо-режим · Виртуальный баланс · Без регистрации</p>
+        </div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:2rem;" class="fade-up">
-      <a href="https://1wjzdv.com/casino/list?open=register&p=aqw2" class="btn-primary">Попробовать демо бесплатно</a>
+
+    <!-- Feature cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:1.5rem;" class="fade-up">
+      <div style="background:var(--white);border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px var(--shadow-soft);display:flex;gap:1rem;align-items:flex-start;">
+        <div style="font-size:1.8rem;line-height:1;flex-shrink:0;">🆓</div>
+        <div>
+          <h3 style="font-size:0.97rem;font-family:'Manrope',sans-serif;font-weight:700;margin-bottom:0.35rem;">Без депозита</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin:0;">Виртуальный баланс для практики. Никаких реальных денег не требуется.</p>
+        </div>
+      </div>
+      <div style="background:var(--white);border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px var(--shadow-soft);display:flex;gap:1rem;align-items:flex-start;">
+        <div style="font-size:1.8rem;line-height:1;flex-shrink:0;">🎮</div>
+        <div>
+          <h3 style="font-size:0.97rem;font-family:'Manrope',sans-serif;font-weight:700;margin-bottom:0.35rem;">Полная механика</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin:0;">Те же множители, авто-вывод, история раундов — точная копия реальной игры.</p>
+        </div>
+      </div>
+      <div style="background:var(--white);border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px var(--shadow-soft);display:flex;gap:1rem;align-items:flex-start;">
+        <div style="font-size:1.8rem;line-height:1;flex-shrink:0;">📱</div>
+        <div>
+          <h3 style="font-size:0.97rem;font-family:'Manrope',sans-serif;font-weight:700;margin-bottom:0.35rem;">iOS и Android</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin:0;">Краш-игра запускается в браузере телефона без установки приложений.</p>
+        </div>
+      </div>
+      <div style="background:var(--white);border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px var(--shadow-soft);display:flex;gap:1rem;align-items:flex-start;">
+        <div style="font-size:1.8rem;line-height:1;flex-shrink:0;">🔐</div>
+        <div>
+          <h3 style="font-size:0.97rem;font-family:'Manrope',sans-serif;font-weight:700;margin-bottom:0.35rem;">Provably Fair</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin:0;">Даже в демо — настоящий алгоритм честности. Каждый раунд верифицируем.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
