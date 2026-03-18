@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Crawl-delay: 5
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+# Block common bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://towerrush2.vercel.app/sitemap.xml

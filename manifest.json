@@ -1,0 +1,26 @@
+{
+  "name": "Tower Rush — краш-игра онлайн",
+  "short_name": "Tower Rush",
+  "description": "Краш-игра онлайн с честными множителями до ×100, мгновенными выплатами и RTP 97.4%",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdfaf5",
+  "theme_color": "#d4af37",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "orientation": "portrait-primary"
+}
