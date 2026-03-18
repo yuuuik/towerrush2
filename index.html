@@ -1008,16 +1008,15 @@
     background: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 20px, transparent 20px, transparent 40px);
   }
 
-  /* ══ КАЛЬКУЛЯТОР ВЫИГРЫША ══ */
+  /* ══ КАЛЬКУЛЯТОР СТРАТЕГИЙ ══ */
   .calc-wrap {
-    max-width: 720px; margin: 0 auto;
+    max-width: 820px; margin: 0 auto;
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 8px 40px var(--shadow-gold), 0 2px 12px var(--shadow-soft);
+    box-shadow: 0 8px 48px var(--shadow-gold), 0 2px 14px var(--shadow-soft);
     border: 1.5px solid rgba(212,175,55,0.22);
     overflow: hidden;
   }
-
   .calc-head {
     background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
     padding: 1.1rem 1.6rem;
@@ -1030,57 +1029,155 @@
     color: var(--gold); margin: 0; line-height: 1.3;
   }
   .calc-head-sub { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin: 0; }
-  .calc-body { padding: 1.6rem; display: flex; flex-direction: column; gap: 1.3rem; }
-  .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .calc-body { padding: 0; display: flex; flex-direction: column; }
+  .calc-section {
+    padding: 1.4rem 1.6rem;
+    border-bottom: 1px solid rgba(212,175,55,0.12);
+  }
+  .calc-section:last-child { border-bottom: none; }
+  .calc-section-title {
+    font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--gold-dark);
+    margin-bottom: 1rem;
+  }
+  .calc-section-subtitle {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Стратегии */
+  .calc-strategies { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .calc-strat {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    border: 1.5px solid rgba(212,175,55,0.25);
+    border-radius: 12px; padding: 0.6rem 0.9rem;
+    background: var(--cream); cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    transition: all 0.18s; min-width: 80px; flex: 1;
+  }
+  .calc-strat:hover { border-color: var(--gold); background: rgba(212,175,55,0.06); }
+  .calc-strat.active {
+    background: linear-gradient(135deg, #1f2937, #374151);
+    border-color: var(--gold); color: #fff;
+  }
+  .cs-emoji { font-size: 1.2rem; }
+  .cs-name { font-size: 0.7rem; font-weight: 700; color: inherit; }
+  .cs-mult { font-size: 0.85rem; font-weight: 800; color: var(--gold); }
+  .calc-strat.active .cs-name { color: rgba(255,255,255,0.75); }
+
+  .calc-custom-row {
+    margin-top: 0.9rem;
+    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  }
+
+  /* Поля ввода */
+  .calc-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem; }
   .calc-field { display: flex; flex-direction: column; gap: 0.4rem; }
-  .calc-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .calc-label { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
   .calc-input {
-    height: 48px; border-radius: 10px;
+    height: 46px; border-radius: 10px;
     border: 1.5px solid rgba(212,175,55,0.3);
-    padding: 0 1rem;
-    font-size: 1rem; font-weight: 600;
+    padding: 0 0.9rem;
+    font-size: 0.95rem; font-weight: 600;
     font-family: 'Manrope', sans-serif;
     color: var(--text); background: var(--cream);
     outline: none; width: 100%;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   .calc-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,0.12); }
-  .calc-presets { display: flex; gap: 0.45rem; flex-wrap: wrap; }
-  .calc-preset {
-    background: var(--cream-dark); border: 1.5px solid rgba(212,175,55,0.25);
-    border-radius: 8px; padding: 5px 13px;
-    font-size: 0.78rem; font-weight: 700; color: var(--gold-dark);
-    cursor: pointer; font-family: 'Manrope', sans-serif;
-    transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+  /* Главные метрики */
+  .calc-metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem; margin-bottom: 1.1rem;
   }
-  .calc-preset:hover { background: rgba(212,175,55,0.15); border-color: var(--gold); }
-  .calc-preset.active { background: var(--gold); color: #fff; border-color: var(--gold); }
-  .calc-result {
-    background: linear-gradient(135deg, var(--cream-dark) 0%, #fef9e7 100%);
-    border-radius: 14px;
-    border: 1.5px solid rgba(212,175,55,0.28);
-    padding: 1.2rem 1.4rem;
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem; text-align: center;
+  .calc-metric {
+    background: var(--cream);
+    border-radius: 12px; border: 1px solid rgba(212,175,55,0.18);
+    padding: 0.85rem 0.6rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+    text-align: center;
   }
-  .calc-res-item { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
-  .calc-res-label { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
-  .calc-res-val {
+  .cm-icon { font-size: 1.1rem; }
+  .cm-val {
     font-family: 'Playfair Display', serif;
-    font-size: 1.35rem; font-weight: 700; color: var(--text);
+    font-size: 1.3rem; font-weight: 700; color: var(--text);
+    line-height: 1;
   }
-  .calc-res-val.green { color: #16a34a; }
-  .calc-res-val.red   { color: #dc2626; }
-  .calc-ev {
-    display: flex; align-items: flex-start; gap: 0.6rem;
-    font-size: 0.8rem; color: var(--text-muted);
-    background: rgba(212,175,55,0.07);
-    padding: 0.7rem 1rem; border-radius: 10px; line-height: 1.5;
+  .cm-val.green { color: #16a34a; }
+  .cm-val.red   { color: #dc2626; }
+  .cm-label { font-size: 0.65rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.3; }
+
+  /* Полоса банкролла */
+  .calc-bankroll-bar-wrap { margin-bottom: 1.1rem; }
+  .calc-bankroll-bar-labels {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+    margin-bottom: 0.4rem;
   }
-  .calc-ev-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-  @media (max-width: 560px) {
+  .calc-bankroll-bar {
+    height: 10px; border-radius: 6px;
+    background: rgba(212,175,55,0.12); overflow: hidden;
+  }
+  .cbb-fill {
+    height: 100%; border-radius: 6px;
+    background: var(--gold);
+    transition: width 0.4s ease, background 0.4s;
+  }
+
+  /* Серийный риск */
+  .calc-streak-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+  }
+  .calc-streak-item {
+    background: var(--cream); border-radius: 10px;
+    border: 1px solid rgba(212,175,55,0.15);
+    padding: 0.7rem 0.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+    text-align: center;
+  }
+  .csi-label { font-size: 0.62rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.3; }
+  .csi-val { font-size: 0.95rem; font-weight: 800; color: var(--text); }
+  .csi-val.green { color: #16a34a; }
+  .csi-val.warn  { color: #d97706; }
+  .csi-val.red   { color: #dc2626; }
+
+  /* Таблица сравнения */
+  .calc-compare-table { border-radius: 10px; overflow: hidden; border: 1px solid rgba(212,175,55,0.18); }
+  .cct-head {
+    display: grid; grid-template-columns: 1.6fr 0.7fr 1fr 0.7fr 1fr 1fr;
+    background: #1f2937; color: rgba(255,255,255,0.55);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 0.55rem 0.85rem;
+  }
+  .cct-row {
+    display: grid; grid-template-columns: 1.6fr 0.7fr 1fr 0.7fr 1fr 1fr;
+    padding: 0.6rem 0.85rem; font-size: 0.78rem;
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+    color: var(--text); transition: background 0.15s;
+  }
+  .cct-row:last-child { border-bottom: none; }
+  .cct-row:hover { background: rgba(212,175,55,0.05); }
+  .cct-row.active-row { background: rgba(212,175,55,0.08); font-weight: 700; }
+  .cct-row .cct-win { color: #16a34a; font-weight: 700; }
+  .cct-row .cct-loss { color: #dc2626; }
+  .cct-note { font-size: 0.7rem; color: var(--text-light); margin-top: 0.6rem; line-height: 1.5; }
+
+  @media (max-width: 700px) {
+    .calc-row { grid-template-columns: 1fr 1fr; }
+    .calc-metrics { grid-template-columns: 1fr 1fr; }
+    .calc-streak-grid { grid-template-columns: 1fr 1fr; }
+    .cct-head, .cct-row { grid-template-columns: 1.4fr 0.6fr 0.9fr 0.7fr; }
+    .cct-head span:nth-child(5), .cct-head span:nth-child(6),
+    .cct-row  span:nth-child(5), .cct-row  span:nth-child(6) { display: none; }
+  }
+  @media (max-width: 480px) {
     .calc-row { grid-template-columns: 1fr; }
-    .calc-result { grid-template-columns: 1fr 1fr; }
+    .calc-strategies { gap: 0.35rem; }
+    .calc-strat { min-width: 60px; padding: 0.5rem 0.5rem; }
+    .cs-name { font-size: 0.62rem; }
   }
 </style>
 
@@ -1250,6 +1347,7 @@
     <ul class="nav-links">
       <li><a href="#about">Об игре</a></li>
       <li><a href="#how">Как играть</a></li>
+      <li><a href="#demo">Калькулятор</a></li>
       <li><a href="#bonuses">Бонусы</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -1430,66 +1528,189 @@
 </section>
 <div class="gold-divider"></div>
 
-<!-- ═══ КАЛЬКУЛЯТОР ═══ -->
+<!-- ═══ КАЛЬКУЛЯТОР СТРАТЕГИЙ ═══ -->
 <section class="demo-section" id="demo" style="background:var(--cream-dark);padding:3.5rem 1.5rem;">
   <div class="section-inner">
     <div class="section-head fade-up" style="margin-bottom:2rem;">
-      <span class="section-label">Калькулятор</span>
+      <span class="section-label">Калькулятор стратегий</span>
       <span class="gold-line"></span>
-      <h2 style="font-size:clamp(1.5rem,3.5vw,2.2rem);">Калькулятор выигрыша в Tower Rush</h2>
-      <p>Введите сумму ставки и целевой множитель — мгновенно узнайте потенциальный выигрыш, чистую прибыль и математическое ожидание.</p>
+      <h2 style="font-size:clamp(1.5rem,3.5vw,2.2rem);">Калькулятор тактик Tower Rush: шансы, серии и прогноз банкролла</h2>
+      <p>Выберите стратегию вывода — калькулятор покажет реальные шансы победы, сколько раундов вы выиграете за сессию, риск серий поражений и прогноз баланса.</p>
     </div>
 
     <div class="calc-wrap fade-up">
       <div class="calc-head">
-        <span class="calc-head-icon">🏗️</span>
+        <span class="calc-head-icon">📊</span>
         <div>
-          <p class="calc-head-title">Калькулятор выигрыша Tower Rush</p>
-          <p class="calc-head-sub">RTP 97.4% · Provably Fair · Множители до ×100</p>
+          <p class="calc-head-title">Калькулятор стратегий Tower Rush</p>
+          <p class="calc-head-sub">Шансы · Серии · Прогноз банкролла · RTP 97.4%</p>
         </div>
       </div>
+
       <div class="calc-body">
-        <div class="calc-row">
-          <div class="calc-field">
-            <label class="calc-label" for="calc-bet">Сумма ставки (₽)</label>
-            <input class="calc-input" id="calc-bet" type="number" min="1" value="1000" oninput="calcUpdate()">
+
+        <!-- Шаг 1: Стратегия -->
+        <div class="calc-section">
+          <div class="calc-section-title">① Выберите стратегию вывода</div>
+          <div class="calc-strategies">
+            <button class="calc-strat" data-mult="1.5" onclick="calcSetStrat(this)">
+              <span class="cs-emoji">🐢</span>
+              <span class="cs-name">Черепаха</span>
+              <span class="cs-mult">×1.5</span>
+            </button>
+            <button class="calc-strat active" data-mult="2" onclick="calcSetStrat(this)">
+              <span class="cs-emoji">⚖️</span>
+              <span class="cs-name">Стабильная</span>
+              <span class="cs-mult">×2.0</span>
+            </button>
+            <button class="calc-strat" data-mult="5" onclick="calcSetStrat(this)">
+              <span class="cs-emoji">🦅</span>
+              <span class="cs-name">Агрессивная</span>
+              <span class="cs-mult">×5.0</span>
+            </button>
+            <button class="calc-strat" data-mult="10" onclick="calcSetStrat(this)">
+              <span class="cs-emoji">🔥</span>
+              <span class="cs-name">Хай-риск</span>
+              <span class="cs-mult">×10</span>
+            </button>
+            <button class="calc-strat" data-mult="custom" onclick="calcSetStrat(this)">
+              <span class="cs-emoji">✏️</span>
+              <span class="cs-name">Свой</span>
+              <span class="cs-mult">×?</span>
+            </button>
           </div>
-          <div class="calc-field">
-            <label class="calc-label" for="calc-mult">Целевой множитель (×)</label>
-            <input class="calc-input" id="calc-mult" type="number" min="1.01" step="0.01" value="2.00" oninput="calcUpdate()">
+          <div class="calc-custom-row" id="calc-custom-row" style="display:none;">
+            <div class="calc-field" style="max-width:200px;">
+              <label class="calc-label" for="calc-custom-mult">Свой множитель (×)</label>
+              <input class="calc-input" id="calc-custom-mult" type="number" min="1.01" step="0.01" value="3.00" oninput="calcUpdate()">
+            </div>
           </div>
         </div>
-        <div>
-          <div class="calc-label" style="margin-bottom:0.5rem;">Быстрый выбор множителя</div>
-          <div class="calc-presets">
-            <button class="calc-preset" onclick="calcSetMult(1.5)">×1.5</button>
-            <button class="calc-preset active" onclick="calcSetMult(2)">×2.0</button>
-            <button class="calc-preset" onclick="calcSetMult(3)">×3.0</button>
-            <button class="calc-preset" onclick="calcSetMult(5)">×5.0</button>
-            <button class="calc-preset" onclick="calcSetMult(10)">×10</button>
-            <button class="calc-preset" onclick="calcSetMult(25)">×25</button>
-            <button class="calc-preset" onclick="calcSetMult(50)">×50</button>
-            <button class="calc-preset" onclick="calcSetMult(100)">×100</button>
+
+        <!-- Шаг 2: Параметры сессии -->
+        <div class="calc-section">
+          <div class="calc-section-title">② Параметры сессии</div>
+          <div class="calc-row">
+            <div class="calc-field">
+              <label class="calc-label" for="calc-bet">Ставка за раунд (₽)</label>
+              <input class="calc-input" id="calc-bet" type="number" min="1" value="500" oninput="calcUpdate()">
+            </div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-rounds">Число раундов</label>
+              <input class="calc-input" id="calc-rounds" type="number" min="1" max="10000" value="100" oninput="calcUpdate()">
+            </div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-bankroll">Банкролл (₽)</label>
+              <input class="calc-input" id="calc-bankroll" type="number" min="1" value="10000" oninput="calcUpdate()">
+            </div>
           </div>
         </div>
-        <div class="calc-result">
-          <div class="calc-res-item">
-            <span class="calc-res-label">Выплата</span>
-            <span class="calc-res-val" id="calc-out">2 000 ₽</span>
+
+        <!-- Шаг 3: Прогноз -->
+        <div class="calc-section">
+          <div class="calc-section-title">③ Прогноз</div>
+
+          <div class="calc-metrics">
+            <div class="calc-metric">
+              <span class="cm-icon">🎯</span>
+              <span class="cm-val" id="cm-winrate">48.7%</span>
+              <span class="cm-label">Шанс победы за раунд</span>
+            </div>
+            <div class="calc-metric">
+              <span class="cm-icon">🏆</span>
+              <span class="cm-val green" id="cm-wins">49</span>
+              <span class="cm-label">Побед за <span id="cm-rounds-lbl">100</span> раундов</span>
+            </div>
+            <div class="calc-metric">
+              <span class="cm-icon">💔</span>
+              <span class="cm-val red" id="cm-losses">51</span>
+              <span class="cm-label">Поражений</span>
+            </div>
+            <div class="calc-metric">
+              <span class="cm-icon">💰</span>
+              <span class="cm-val" id="cm-balance-end">8 700 ₽</span>
+              <span class="cm-label">Ожид. баланс в конце</span>
+            </div>
           </div>
-          <div class="calc-res-item">
-            <span class="calc-res-label">Чистая прибыль</span>
-            <span class="calc-res-val green" id="calc-profit">+1 000 ₽</span>
+
+          <div class="calc-bankroll-bar-wrap">
+            <div class="calc-bankroll-bar-labels">
+              <span id="cbb-start">10 000 ₽</span>
+              <span style="font-size:0.72rem;">ожид. изменение: <b id="cbb-ev-val" style="color:#dc2626">−1 300 ₽</b></span>
+              <span id="cbb-end">8 700 ₽</span>
+            </div>
+            <div class="calc-bankroll-bar"><div class="cbb-fill" id="cbb-fill" style="width:87%"></div></div>
           </div>
-          <div class="calc-res-item">
-            <span class="calc-res-label">ROI</span>
-            <span class="calc-res-val green" id="calc-roi">+100%</span>
+
+          <div class="calc-section-subtitle">⚡ Серийный риск — шанс серий поражений подряд</div>
+          <div class="calc-streak-grid">
+            <div class="calc-streak-item">
+              <span class="csi-label">3 поражения подряд</span>
+              <span class="csi-val" id="cs-streak3">13.5%</span>
+            </div>
+            <div class="calc-streak-item">
+              <span class="csi-label">5 поражений подряд</span>
+              <span class="csi-val" id="cs-streak5">3.4%</span>
+            </div>
+            <div class="calc-streak-item">
+              <span class="csi-label">Ожид. серия поражений</span>
+              <span class="csi-val" id="cs-streak-avg">~2</span>
+            </div>
+            <div class="calc-streak-item">
+              <span class="csi-label">Банкролл / ставка</span>
+              <span class="csi-val" id="cs-cover">20 ставок</span>
+            </div>
           </div>
         </div>
-        <div class="calc-ev">
-          <span class="calc-ev-icon">ℹ️</span>
-          <span>При RTP 97.4% математическое ожидание этой ставки: <b id="calc-ev-val">−26 ₽</b>. Чем ниже множитель — тем выше статистическая вероятность успеха.</span>
+
+        <!-- Сравнение стратегий -->
+        <div class="calc-section">
+          <div class="calc-section-title">📊 Сравнение стратегий — <span id="calc-compare-rounds">100</span> раундов по <span id="calc-compare-bet">500</span> ₽</div>
+          <div class="calc-compare-table">
+            <div class="cct-head">
+              <span>Стратегия</span>
+              <span>Множитель</span>
+              <span>Шанс/раунд</span>
+              <span>Побед</span>
+              <span>Выигрыш за победу</span>
+              <span>Ожид. серия пораж.</span>
+            </div>
+            <div class="cct-row" id="cct-turtle">
+              <span>🐢 Черепаха</span><span>×1.5</span>
+              <span id="cct-t-wr">64.9%</span>
+              <span id="cct-t-w">65</span>
+              <span class="cct-win" id="cct-t-wwin">+250 ₽</span>
+              <span id="cct-t-str">~2</span>
+            </div>
+            <div class="cct-row" id="cct-stable">
+              <span>⚖️ Стабильная</span><span>×2.0</span>
+              <span id="cct-s-wr">48.7%</span>
+              <span id="cct-s-w">49</span>
+              <span class="cct-win" id="cct-s-wwin">+500 ₽</span>
+              <span id="cct-s-str">~3</span>
+            </div>
+            <div class="cct-row" id="cct-aggr">
+              <span>🦅 Агрессивная</span><span>×5.0</span>
+              <span id="cct-a-wr">19.5%</span>
+              <span id="cct-a-w">20</span>
+              <span class="cct-win" id="cct-a-wwin">+2 000 ₽</span>
+              <span id="cct-a-str">~8</span>
+            </div>
+            <div class="cct-row" id="cct-high">
+              <span>🔥 Хай-риск</span><span>×10</span>
+              <span id="cct-h-wr">9.7%</span>
+              <span id="cct-h-w">10</span>
+              <span class="cct-win" id="cct-h-wwin">+4 500 ₽</span>
+              <span id="cct-h-str">~18</span>
+            </div>
+          </div>
+          <p class="cct-note">
+            * ЕВ одинаков для всех стратегий (RTP 97.4% = −2.6% от ставки). Разница только в дисперсии:
+            «Черепаха» — много мелких побед, «Хай-риск» — редкие, но крупные.
+            Длинная серия поражений при ×10 требует банкролла минимум в 20–30 ставок.
+          </p>
         </div>
+
       </div>
     </div>
 
@@ -1911,43 +2132,109 @@ const countObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.count-num[data-target]').forEach(el => countObserver.observe(el));
 
-/* ══ КАЛЬКУЛЯТОР ВЫИГРЫША ══ */
+/* ══ КАЛЬКУЛЯТОР СТРАТЕГИЙ ══ */
 function calcFmt(n) {
-  return n.toLocaleString('ru', { maximumFractionDigits: 2 });
+  return Math.abs(n) >= 1000
+    ? n.toLocaleString('ru', { maximumFractionDigits: 0 })
+    : n.toLocaleString('ru', { maximumFractionDigits: 2 });
+}
+
+function calcGetMult() {
+  var active = document.querySelector('.calc-strat.active');
+  if (active && active.dataset.mult !== 'custom') return parseFloat(active.dataset.mult);
+  return Math.max(1.01, parseFloat(document.getElementById('calc-custom-mult').value) || 3);
+}
+
+function calcSetStrat(btn) {
+  document.querySelectorAll('.calc-strat').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var isCustom = btn.dataset.mult === 'custom';
+  document.getElementById('calc-custom-row').style.display = isCustom ? 'flex' : 'none';
+  calcUpdate();
+}
+
+function calcExpectedStreak(rounds, pLose) {
+  if (pLose <= 0) return 0;
+  if (pLose >= 1) return rounds;
+  return Math.max(1, Math.log(rounds * pLose + 1) / Math.log(1 / pLose));
 }
 
 function calcUpdate() {
-  var bet  = parseFloat(document.getElementById('calc-bet').value)  || 1000;
-  var mult = parseFloat(document.getElementById('calc-mult').value) || 2;
-  mult = Math.max(1.01, mult);
+  var bet      = Math.max(1, parseFloat(document.getElementById('calc-bet').value)      || 500);
+  var rounds   = Math.max(1, Math.min(10000, parseInt(document.getElementById('calc-rounds').value)   || 100));
+  var bankroll = Math.max(1, parseFloat(document.getElementById('calc-bankroll').value) || 10000);
+  var mult     = calcGetMult();
 
-  var out    = bet * mult;
-  var profit = out - bet;
-  var roi    = (profit / bet) * 100;
-  var ev     = bet * (0.974 - 1); // −2.6% от ставки
+  var pWin   = Math.min(0.974 / mult, 0.9999);
+  var pLose  = 1 - pWin;
+  var expWins   = rounds * pWin;
+  var evTotal   = rounds * bet * (0.974 - 1);           // −2.6% × ставка × раундов
+  var balEnd    = bankroll + evTotal;
 
-  document.getElementById('calc-out').textContent = calcFmt(out) + ' ₽';
+  // Метрики
+  document.getElementById('cm-winrate').textContent    = (pWin * 100).toFixed(1) + '%';
+  document.getElementById('cm-wins').textContent        = Math.round(expWins);
+  document.getElementById('cm-losses').textContent      = Math.round(rounds - expWins);
+  document.getElementById('cm-rounds-lbl').textContent  = rounds;
 
-  var profitEl = document.getElementById('calc-profit');
-  profitEl.textContent  = (profit >= 0 ? '+' : '') + calcFmt(profit) + ' ₽';
-  profitEl.className    = 'calc-res-val ' + (profit >= 0 ? 'green' : 'red');
+  var balEl = document.getElementById('cm-balance-end');
+  balEl.textContent = calcFmt(Math.max(0, balEnd)) + ' ₽';
+  balEl.className = 'cm-val ' + (balEnd >= bankroll ? 'green' : 'red');
 
-  var roiEl = document.getElementById('calc-roi');
-  roiEl.textContent = (roi >= 0 ? '+' : '') + roi.toFixed(0) + '%';
-  roiEl.className   = 'calc-res-val ' + (roi >= 0 ? 'green' : 'red');
+  // Полоса банкролла
+  document.getElementById('cbb-start').textContent = calcFmt(bankroll) + ' ₽';
+  document.getElementById('cbb-end').textContent   = calcFmt(Math.max(0, balEnd)) + ' ₽';
+  var evEl = document.getElementById('cbb-ev-val');
+  evEl.textContent = (evTotal < 0 ? '−' : '+') + calcFmt(Math.abs(evTotal)) + ' ₽';
+  evEl.style.color = evTotal < 0 ? '#dc2626' : '#16a34a';
+  var fillPct = Math.max(2, Math.min(100, (balEnd / bankroll) * 100));
+  var fill = document.getElementById('cbb-fill');
+  fill.style.width      = fillPct + '%';
+  fill.style.background = fillPct >= 98 ? '#16a34a' : fillPct >= 80 ? '#d4af37' : '#dc2626';
 
-  document.getElementById('calc-ev-val').textContent =
-    (ev < 0 ? '−' : '+') + calcFmt(Math.abs(ev)) + ' ₽';
+  // Серийный риск
+  var s3 = Math.pow(pLose, 3) * 100;
+  var s5 = Math.pow(pLose, 5) * 100;
+  var avgStreak = calcExpectedStreak(rounds, pLose);
+  var cover = Math.floor(bankroll / bet);
 
-  document.querySelectorAll('.calc-preset').forEach(function(btn) {
-    var v = parseFloat(btn.textContent.replace('×', ''));
-    btn.classList.toggle('active', Math.abs(v - mult) < 0.05);
+  var s3el = document.getElementById('cs-streak3');
+  s3el.textContent = s3.toFixed(1) + '%';
+  s3el.className = 'csi-val ' + (s3 > 20 ? 'red' : s3 > 10 ? 'warn' : 'green');
+
+  var s5el = document.getElementById('cs-streak5');
+  s5el.textContent = s5.toFixed(1) + '%';
+  s5el.className = 'csi-val ' + (s5 > 10 ? 'red' : s5 > 3 ? 'warn' : 'green');
+
+  var saEl = document.getElementById('cs-streak-avg');
+  saEl.textContent = '~' + Math.ceil(avgStreak);
+  saEl.className = 'csi-val ' + (avgStreak > 10 ? 'red' : avgStreak > 4 ? 'warn' : 'green');
+
+  var covEl = document.getElementById('cs-cover');
+  covEl.textContent = calcFmt(cover) + ' ставок';
+  covEl.className = 'csi-val ' + (cover > avgStreak * 4 ? 'green' : cover > avgStreak * 2 ? 'warn' : 'red');
+
+  // Таблица сравнения
+  document.getElementById('calc-compare-rounds').textContent = rounds;
+  document.getElementById('calc-compare-bet').textContent    = calcFmt(bet);
+
+  var compareData = [
+    { ids: ['cct-t-wr','cct-t-w','cct-t-wwin','cct-t-str'], m: 1.5, rowId: 'cct-turtle'  },
+    { ids: ['cct-s-wr','cct-s-w','cct-s-wwin','cct-s-str'], m: 2.0, rowId: 'cct-stable'  },
+    { ids: ['cct-a-wr','cct-a-w','cct-a-wwin','cct-a-str'], m: 5.0, rowId: 'cct-aggr'    },
+    { ids: ['cct-h-wr','cct-h-w','cct-h-wwin','cct-h-str'], m: 10,  rowId: 'cct-high'    }
+  ];
+  compareData.forEach(function(d) {
+    var pw = Math.min(0.974 / d.m, 0.9999);
+    var pl = 1 - pw;
+    var avgS = calcExpectedStreak(rounds, pl);
+    document.getElementById(d.ids[0]).textContent = (pw * 100).toFixed(1) + '%';
+    document.getElementById(d.ids[1]).textContent = Math.round(rounds * pw);
+    document.getElementById(d.ids[2]).textContent = '+' + calcFmt(bet * (d.m - 1)) + ' ₽';
+    document.getElementById(d.ids[3]).textContent = '~' + Math.ceil(avgS);
+    var rowEl = document.getElementById(d.rowId);
+    rowEl.classList.toggle('active-row', Math.abs(d.m - mult) < 0.05);
   });
-}
-
-function calcSetMult(v) {
-  document.getElementById('calc-mult').value = v % 1 === 0 ? v + '.00' : v.toFixed(2);
-  calcUpdate();
 }
 
 document.addEventListener('DOMContentLoaded', calcUpdate);
