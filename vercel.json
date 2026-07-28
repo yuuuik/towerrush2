@@ -1,4 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "node update-sitemap.js"
+  "buildCommand": "node update-sitemap.js",
+  "outputDirectory": "."
 }
